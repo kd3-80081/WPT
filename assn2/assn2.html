@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    style="
+      margin: 0;
+      display: flexbox;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    "
+  >
+    <header class="header">
+      <div
+        style="
+          height: 150px;
+          width: 100%;
+          text-align: center;
+          padding-top: 40px;
+          font-size: 40px;
+        "
+      >
+        <b>Calculator</b>
+      </div>
+    </header>
+
+    <script>
+      function Addition() {
+        var number1 = document.getElementById("number1");
+        var number2 = document.getElementById("number2");
+        var result = document.getElementById("result");
+
+        result.value = Number(number1.value) + Number(number2.value);
+        //Number(number1.value) + Number(number2.value);
+
+        console.log(number1.value);
+        console.log(result.value);
+      }
+      function Substraction() {
+        var number1 = document.getElementById("number1");
+        var number2 = document.getElementById("number2");
+        var result = document.getElementById("result");
+
+        result.value = Number(number1.value) - Number(number2.value);
+
+        console.log(number1.value);
+        console.log(result.value);
+      }
+      function Multiplication() {
+        var number1 = document.getElementById("number1");
+        var number2 = document.getElementById("number2");
+        var result = document.getElementById("result");
+
+        result.value = Number(number1.value) * Number(number2.value);
+        //Number(number1.value) + Number(number2.value);
+
+        console.log(number1.value);
+        console.log(result.value);
+      }
+      function Division() {
+        var number1 = document.getElementById("number1");
+        var number2 = document.getElementById("number2");
+        var result = document.getElementById("result");
+
+        result.value = Number(number1.value) / Number(number2.value);
+        //Number(number1.value) + Number(number2.value);
+
+        console.log(number1.value);
+        console.log(result.value);
+      }
+    </script>
+
+    <div class="div">
+      <div>
+        Enter number 1 <br /><br /><br />
+        Enter number 2 <br /><br /><br />
+        Result
+      </div>
+
+      <div>
+        <input type="number" name="number1" id="number1" placeholder="Eg. 23" /
+        >
+        <br /><br /><br /><input
+          type="number"
+          name="number2"
+          id="number2"
+          placeholder="Eg. 34"
+        />
+        <br /><br /><br /><input
+          type="number"
+          id="result"
+          name="Result"
+          disabled
+        />
+      </div>
+    </div>
+    <br />
+    <center>
+      <input type="button" value="Addition" onclick="Addition()" />
+      <input type="button" value="Substraction" onclick="Substraction()" />
+      <input type="button" value="Multiplicatioin" onclick="Multiplication()" />
+      <input type="button" value="Division" onclick="Division()" />
+    </center>
+  </body>
+</html>

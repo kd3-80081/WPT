@@ -1,0 +1,16 @@
+.div {
+    background-color: antiquewhite;
+    
+    height: 145px; 
+    width: 500px; 
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 30px;
+    margin-left: 37%;
+  }
+
+.header{
+    height: 150px;
+    
+    background-color:beige ;
+}
