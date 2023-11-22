@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Registration Form</title>
+  </head>
+  <body>
+    <center>
+      <table>
+        <tr>
+          <td>Name</td>
+          <td><input type="text" id="name" placeholder="Enter the Name" /></td>
+          <td id="nameerror" style="color: red; font: italic"></td>
+        </tr>
+        <tr>
+          <td>DOB</td>
+          <td><input type="date" id="date" /></td>
+          <td id="doberror" style="color: red; font: italic"></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><input type="text" id="Email" /></td>
+          <td id="emailerror" style="color: red; font: italic"></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="password" id="password" /></td>
+          <td id="passworderror" style="color: red; font: italic"></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td>
+            <select name="state" id="state">
+              <option value="None">Select</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Haryana">Haryana</option>
+              <option value="MP">MP</option>
+              <option value="UP">UP</option>
+              <option value="AP">AP</option>
+              <option value="J&k">J&k</option>
+              <option value="UK">UK</option>
+            </select>
+          </td>
+          <td id="addresserror" style="color: red; font: italic"></td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td>
+            <input type="radio" id="gender" name="gender1" value="Male" />M
+            <input type="radio" id="gender" name="gender1" value="Female" />F
+          </td>
+          <td id="gendererror" style="color: red; font: italic"></td>
+        </tr>
+
+        <tr>
+          <td>Select your course</td>
+          <td>
+            <select name="course" id="course">
+              <option value="None">Select</option>
+              <option value="DAC">DAC</option>
+              <option value="DBDA">DBDA</option>
+              <option value="DMC">DMC</option>
+              <option value="DAI">DAI</option>
+              <option value="DITISS">DITISS</option>
+              <option value="DESD">DESD</option>
+            </select>
+          </td>
+          <td id="courseerror" style="color: red; font: italic"></td>
+        </tr>
+        <tr>
+          <td>
+            <br />
+            <input
+              type="button"
+              name="register"
+              value="Register"
+              id="register"
+              onclick="register()"
+            />
+          </td>
+          <td>
+            <br />
+            <input
+              type="button"
+              name="clear"
+              value="Clear"
+              id="clear1"
+              onclick="clear11()"
+            />
+          </td>
+        </tr>
+      </table>
+
+      <table border="1" style="width: 1500px; text-align: center">
+        <thead>
+          <th style="width: 100px">S.no</th>
+          <th style="width: 100px">Name</th>
+          <th style="width: 130px">DOB</th>
+          <th style="width: 170px">Email</th>
+          <th style="width: 120px">Password</th>
+          <th style="width: 150px">Address</th>
+          <th style="width: 100px">Gender</th>
+          <th style="width: 130px">Course</th>
+        </thead>
+        <tbody id="mytable"></tbody>
+      </table>
+    </center>
+
+    <script>
+      let counter = 0;
+      function register() {
+        //debugger;
+
+        console.log("Register called");
+        var namer = document.getElementById("name");
+
+        var name1 = validatefield(
+          "name",
+          "nameerror",
+          "Name field is required"
+        );
+
+        var dater = document.getElementById("date");
+
+        var date1 = validatefield("date", "doberror", "Date field is required");
+
+        var emailr = document.getElementById("Email");
+
+        var email1 = validatefield(
+          "Email",
+          "emailerror",
+          "Email field is required"
+        );
+
+        var passwordr = document.getElementById("password");
+
+        var password1 = validatefield(
+          "password",
+          "passworderror",
+          "Password field is required"
+        );
+
+        var addressr = document.getElementById("state");
+
+        var address1 = validatefield(
+          "state",
+          "addresserror",
+          "Address field is required"
+        );
+
+        var genderr = document.getElementById("gender");
+
+        var gender1 = validatefield(
+          "gender",
+          "gendererror",
+          "Gender field is required"
+        );
+
+        var courser = document.getElementById("course");
+
+        var course1 = validatefield(
+          "course",
+          "courseerror",
+          "course field is required"
+        );
+
+        var bodyr = document.getElementById("mytable");
+
+        if (
+          name1 == 1 &&
+          date1 == 1 &&
+          email1 == 1 &&
+          password1 == 1 &&
+          address1 == 1 &&
+          gender1 == 1 &&
+          course1 == 1
+        ) {
+          ++counter;
+          var row =
+            `<tr> 
+                <td>` +
+            Number(counter) +
+            `</td>
+                <td>` +
+            namer.value +
+            `</td>    
+                <td>` +
+            dater.value +
+            `</td>
+                <td>` +
+            emailr.value +
+            `</td>
+                <td>` +
+            passwordr.value +
+            `</td>
+                <td>` +
+            addressr.value +
+            `</td>
+                <td>` +
+            genderr.value +
+            `</td>    
+                <td>` +
+            courser.value +
+            `</td>
+                </tr>`;
+
+          bodyr.innerHTML = bodyr.innerHTML + row;
+        }
+      }
+      function clear11() {
+        //debugger;
+        console.log("Clear called");
+        var namer = document.getElementById("name");
+        var dater = document.getElementById("date");
+        var emailr = document.getElementById("Email");
+        var passwordr = document.getElementById("password");
+        var addressr = document.getElementById("state");
+        var genderr = document.getElementById("gender");
+        var courser = document.getElementById("course");
+        var emailerror1 = document.getElementById("emailerror");
+        var passworderror1 = document.getElementById("passworderror");
+        var addresserror1 = document.getElementById("addresserror");
+        var gendererror1 = document.getElementById("gendererror");
+        var courseerror1 = document.getElementById("courseerror");
+        var doberror1 = document.getElementById("doberror");
+        var nameerror1 = document.getElementById("nameerror");
+
+        namer.value = "";
+        dater.value = "";
+        emailr.value = "";
+        passwordr.value = "";
+        addressr.value = "";
+        genderr.value = "";
+        courser.value = "";
+        emailerror1.innerText = "";
+        passworderror1.innerText = "";
+        addresserror1.innerText = "";
+        gendererror1.innerText = "";
+        courseerror1.innerText = "";
+        doberror1.innerText = "";
+        nameerror1.innerText = "";
+      }
+    </script>
+    <script src="validation.js"></script>
+  </body>
+</html>
