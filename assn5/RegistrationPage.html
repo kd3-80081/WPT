@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Form</title>
+    <script src="RegistrationPage.js"></script>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap-grid.min.css"
+    />
+  </head>
+  <body>
+    <center>
+      <div class="container">
+        <div class="table-responsive" style="background-color: burlywood">
+          <table>
+            <tbody>
+              <tr>
+                <td>Cnum :</td>
+                <td style="width: 200px"><input type="number" id="cnum" /></td>
+                <td id="cnumerror" style="width: 300px; color: red"></td>
+              </tr>
+              <tr>
+                <td>Cname :</td>
+                <td style="width: 200px"><input type="text" id="name" /></td>
+                <td id="cnameerror" style="width: 300px; color: red"></td>
+              </tr>
+              <tr>
+                <td>Email :</td>
+                <td style="width: 200px"><input type="text" id="email" /></td>
+                <td id="emailerror" style="width: 300px; color: red"></td>
+              </tr>
+              <tr>
+                <td>Password :</td>
+                <td style="width: 200px">
+                  <input type="text" id="password" />
+                </td>
+                <td id="passworderror" style="width: 300px; color: red"></td>
+              </tr>
+              <tr>
+                <td>Confirm Password :</td>
+                <td style="width: 200px">
+                  <input type="text" id="cpassword" />
+                </td>
+
+                <td
+                  id="confirmpassworderror"
+                  style="width: 300px; color: red"
+                ></td>
+              </tr>
+              <tr>
+                <td>Mobile No :</td>
+                <td style="width: 200px">
+                  <input type="text" id="mobileno" />
+                </td>
+                <td id="mobilenoerror" style="width: 300px; color: red"></td>
+              </tr>
+              <tr>
+                <td>State :</td>
+                <td id="State" style="width: 200px">
+                  <select name="state" id="state" onchange="populateCities()">
+                    <option value="None">Select</option>
+                  </select>
+                </td>
+                <td id="stateerror" style="width: 300px; color: red"></td>
+              </tr>
+              <tr>
+                <td>City :</td>
+                <td>
+                  <select name="Cities" id="cities">
+                    <option value="selectCity">Select</option>
+                  </select>
+                </td>
+                <td id="cityerror" style="width: 300px; color: red"></td>
+              </tr>
+
+              <tr>
+                <td>Pincode :</td>
+                <td style="width: 200px">
+                  <input type="text" id="pincode" />
+                </td>
+                <td id="pincodeerror" style="width: 300px; color: red">
+                  This field is required
+                </td>
+              </tr>
+              <tr>
+                <td>Request_Payment_Mode :</td>
+                <td>
+                  <input
+                    type="radio"
+                    id="credit"
+                    name="radio"
+                    value="Credit"
+                  />Credit
+                  <input
+                    type="radio"
+                    id="debit"
+                    name="radio"
+                    value="Debit"
+                  />Debit
+                  <input type="radio" id="upi" name="radio" value="UPI" />UPI
+                </td>
+                <td id="paymenterror"></td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <input type="button" value="Register" onclick="Resgister()" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </center>
+    <script>
+      var helper = new XMLHttpRequest();
+      var obj;
+      var keyArray;
+      helper.onreadystatechange = () => {
+        // debugger;
+        console.log("Ready State : " + helper.readyState);
+        if (helper.status == 200 && helper.readyState == 4) {
+          var helperText = helper.responseText;
+          obj = JSON.parse(helperText);
+          // console.log(obj);
+          keyArray = Object.keys(obj);
+          //console.log(keyArray);
+          for (var i = 0; i < keyArray.length; i++) {
+            var select = document.getElementById("state");
+            select.innerHTML =
+              select.innerHTML +
+              `<option value=${keyArray[i]}">${keyArray[i]}</option>`;
+          }
+        }
+      };
+
+      function populateCities() {
+        let pcValue = document.getElementById("state");
+        let currentState = pcValue.value;
+        console.log(currentState);
+
+        // Use obj directly to get the cities for the selected state
+        let arr = obj[currentState];
+        console.log(arr);
+
+        let selectCity = document.getElementById("cities");
+
+        selectCity.innerHTML = '<option value="1">Select City</option>';
+        for (let i = 0; i < arr.length; i++) {
+          const option = document.createElement("option");
+          option.text = arr[i];
+          option.value = arr[i];
+          selectCity.add(option);
+        }
+      }
+
+      helper.open("GET", "http://127.0.0.1:5500/StateCity.json");
+      helper.send();
+    </script>
+  </body>
+</html>
