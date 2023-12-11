@@ -1,0 +1,7 @@
+{
+    "port" : 5000,
+    "host" :"localhost",
+    "database" : "mydatabase",
+    "password" : "manager",
+    "username": "kd3_80081_naveen"
+}
